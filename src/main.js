@@ -19,6 +19,11 @@ Vue.use(iView, {
     arrowSize: 20
   }
 })
+// 全局设置iview的Message的样式
+Vue.prototype.$Message.config({
+  top: 80,
+  duration: 2
+})
 /*
 按需加载方式
 import 'iview/dist/styles/iview.css'

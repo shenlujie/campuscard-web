@@ -16,12 +16,12 @@
             </h1>
             <Divider/>
             <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-              <FormItem label="标题" prop="name">
-                <Input v-model="formValidate.name" placeholder="请输入邮件标题"></Input>
+              <FormItem label="标题" prop="title">
+                <Input v-model="formValidate.title" placeholder="请输入邮件标题"></Input>
               </FormItem>
-              <FormItem label="内容" prop="desc">
+              <FormItem label="内容" prop="content">
                 <Input
-                  v-model="formValidate.desc"
+                  v-model="formValidate.content"
                   type="textarea"
                   :autosize="{minRows: 6,maxRows: 6}"
                   placeholder="请输入邮件内容"
@@ -39,21 +39,9 @@
             </h1>
             <Divider/>
             <Collapse>
-              <Panel name="1">
-                史蒂夫·乔布斯
-                <p slot="content">史蒂夫·乔布斯（Steve Jobs），1955年2月24日生于美国加利福尼亚州旧金山，美国发明家、企业家、美国苹果公司联合创办人。</p>
-              </Panel>
-              <Panel name="2">
-                斯蒂夫·盖瑞·沃兹尼亚克
-                <p
-                  slot="content"
-                >斯蒂夫·盖瑞·沃兹尼亚克（Stephen Gary Wozniak），美国电脑工程师，曾与史蒂夫·乔布斯合伙创立苹果电脑（今之苹果公司）。斯蒂夫·盖瑞·沃兹尼亚克曾就读于美国科罗拉多大学，后转学入美国著名高等学府加州大学伯克利分校（UC Berkeley）并获得电机工程及计算机（EECS）本科学位（1987年）。</p>
-              </Panel>
-              <Panel name="3">
-                乔纳森·伊夫
-                <p
-                  slot="content"
-                >乔纳森·伊夫是一位工业设计师，现任Apple公司设计师兼资深副总裁，英国爵士。他曾参与设计了iPod，iMac，iPhone，iPad等众多苹果产品。除了乔布斯，他是对苹果那些著名的产品最有影响力的人。</p>
+              <Panel v-for="(item, index) in myMail" :key="index">
+                {{item.title}}
+                <p slot="content">{{item.content}}</p>
               </Panel>
             </Collapse>
           </div>
@@ -67,37 +55,60 @@
 import leftPage from '@/components/leftPage/index'
 import breadcrumbview from '@/components/breadcrumb/index'
 import notLogin from '@/components/notLogin/index'
+import {sendMail, getMail} from '@/api/leaderMailBox'
+
 export default {
   data () {
     return {
       isLogin: false,
       formValidate: {
-        name: '',
-        desc: ''
+        title: '',
+        content: ''
       },
       ruleValidate: {
-        name: [
+        title: [
           { required: true, message: '标题不能为空', trigger: 'blur' }
         ],
-        desc: [
+        content: [
           { required: true, message: '内容不能为空', trigger: 'blur' },
           { type: 'string', min: 20, message: '邮件内容不得少于20个字', trigger: 'blur' }
         ]
-      }
+      },
+      myMail: ''
     }
   },
   methods: {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$Message.success('Success!')
+          let id = this.$store.getters.userInfo.id
+          let mailTitle = this.formValidate.title
+          let mailContent = this.formValidate.content
+          sendMail(id, mailTitle, mailContent).then(response => {
+            let res = response.data
+            this.$Message.success(res.obj)
+            this.$refs[name].resetFields()
+            this.getMyMail()
+          }).catch(error => {
+            console.log('发送邮件异常：' + error.message)
+            this.$Message.error(error.message)
+          })
         } else {
-          this.$Message.error('Fail!')
+          this.$Message.error('输入内容有误，请检查')
         }
       })
     },
     handleReset (name) {
       this.$refs[name].resetFields()
+    },
+    getMyMail () {
+      let id = this.$store.getters.userInfo.id
+      getMail(id).then(response => {
+        let res = response.data
+        this.myMail = res.obj
+      }).catch(error => {
+        console.log('获取已发送邮件失败：' + error.message)
+      })
     }
   },
   components: {
@@ -106,9 +117,16 @@ export default {
     notLogin
   },
   mounted () {
-    console.log(this.$store.getters.token)
+    // console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
       this.isLogin = true
+      let id = this.$store.getters.userInfo.id
+      getMail(id).then(response => {
+        let res = response.data
+        this.myMail = res.obj
+      }).catch(error => {
+        console.log('获取已发送邮件失败：' + error.message)
+      })
     }
   }
 }

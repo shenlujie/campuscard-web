@@ -14,8 +14,8 @@ service.interceptors.request.use(
   config => {
   // 在发送请求之前做些什么
     console.log('request拦截成功')
-    console.log(store.getters.token)
     if (store.getters.token) {
+      console.log(store.getters.token)
       config.headers['Authorization'] = getToken()
     }
     return config
