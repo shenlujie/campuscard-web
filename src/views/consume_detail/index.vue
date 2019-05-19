@@ -42,7 +42,7 @@ export default {
           title: '发生时间',
           key: 'happenTime',
           render: (h, params) => {
-            // 这里的this.row能够获取当前行的数据
+            // params.row能够获取当前行的数据
             return h('span', this.formatDate(params.row.happenTime))
           }
         },
@@ -50,7 +50,7 @@ export default {
           title: '消费金额',
           key: 'sum',
           render: (h, params) => {
-            // 这里的this.row能够获取当前行的数据
+            // params.row能够获取当前行的数据
             return h('span', {}, params.row.sum + '元')
           }
         }
