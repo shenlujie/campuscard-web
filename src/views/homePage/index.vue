@@ -5,7 +5,7 @@
         <Carousel-item>
           <div class="demo-carousel">
             <img
-              src="https://net.jmu.edu.cn/__local/1/44/74/F17636B6E5C19E39DA1706E942D_6758A22A_14F19.jpg"
+              src="@/assets/images/campus_door.jpg"
               alt
             >
           </div>
@@ -13,7 +13,7 @@
         <Carousel-item>
           <div class="demo-carousel">
             <img
-              src="https://net.jmu.edu.cn/__local/B/E8/7B/CD0E4DB8B4B7116FFB8351B974A_78F2DA56_188D4.jpg"
+              src="@/assets/images/campus_it.jpg"
               alt
             >
           </div>
@@ -21,7 +21,7 @@
         <Carousel-item>
           <div class="demo-carousel">
             <img
-              src="https://net.jmu.edu.cn/__local/C/DD/46/C0C7B58BC15486B1DF1A5D8FF59_0B8137E3_758ED.jpg"
+              src="@/assets/images/campus_test.jpg"
               alt
             >
           </div>
@@ -29,7 +29,7 @@
         <Carousel-item>
           <div class="demo-carousel">
             <img
-              src="https://net.jmu.edu.cn/__local/1/13/24/C23DC35C60520883AA11E90B2F2_01881702_1B8E5.jpg"
+              src="@/assets/images/campus_together.jpg"
               alt
             >
           </div>
