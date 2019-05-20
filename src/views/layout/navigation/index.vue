@@ -4,8 +4,8 @@
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
       <router-link to="/" class="navbar-brand">
         <img
-          src="@/assets/images/nuc.jpg"
-          width="30"
+          src="@/assets/images/nuc_logo_white.png"
+          width="90"
           height="30"
           class="d-inline-block align-top"
           alt
