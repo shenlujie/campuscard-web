@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import '@/permission'
 // 导入全局样式
 import './styles/global/index.css'
 // 导入bootstrap样式
