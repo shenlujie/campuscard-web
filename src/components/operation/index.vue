@@ -89,19 +89,23 @@ export default {
     },
     // 提交和重置表单
     handleSubmit (name) {
+      this.$Spin.show()
       this.$refs[name].validate((valid) => {
         if (valid) {
           let stId = this.formValidate.stID
           let apply = this.formValidate.operationType
           submitOperation(stId, apply).then(response => {
             let res = response.data
+            this.$Spin.hide()
             this.$Message.success(res.obj)
             this.$refs[name].resetFields()
           }).catch(error => {
+            this.$Spin.hide()
             console.log(error.message)
             this.$Message.success(error.message)
           })
         } else {
+          this.$Spin.hide()
           this.$Message.error('输入内容有误，请检查')
         }
       })

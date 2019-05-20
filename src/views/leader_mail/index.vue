@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     handleSubmit (name) {
+      this.$Spin.show()
       this.$refs[name].validate((valid) => {
         if (valid) {
           let id = this.$store.getters.userInfo.id
@@ -86,14 +87,17 @@ export default {
           let mailContent = this.formValidate.content
           sendMail(id, mailTitle, mailContent).then(response => {
             let res = response.data
+            this.$Spin.hide()
             this.$Message.success(res.obj)
             this.$refs[name].resetFields()
             this.getMyMail()
           }).catch(error => {
+            this.$Spin.hide()
             console.log('发送邮件异常：' + error.message)
             this.$Message.error(error.message)
           })
         } else {
+          this.$Spin.hide()
           this.$Message.error('输入内容有误，请检查')
         }
       })
@@ -102,11 +106,14 @@ export default {
       this.$refs[name].resetFields()
     },
     getMyMail () {
+      this.$Spin.show()
       let id = this.$store.getters.userInfo.id
       getMail(id).then(response => {
         let res = response.data
         this.myMail = res.obj
+        this.$Spin.hide()
       }).catch(error => {
+        this.$Spin.hide()
         console.log('获取已发送邮件失败：' + error.message)
       })
     }
@@ -117,6 +124,7 @@ export default {
     notLogin
   },
   mounted () {
+    this.$Spin.show()
     // console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
       this.isLogin = true
@@ -124,8 +132,10 @@ export default {
       getMail(id).then(response => {
         let res = response.data
         this.myMail = res.obj
+        this.$Spin.hide()
       }).catch(error => {
         console.log('获取已发送邮件失败：' + error.message)
+        this.$Spin.hide()
       })
     }
   }

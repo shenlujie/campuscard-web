@@ -168,6 +168,7 @@ export default {
     notLogin
   },
   mounted () {
+    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
       this.isLogin = true
@@ -176,38 +177,32 @@ export default {
         let res = response.data
         this.lostInfo = res.obj
         this.count = res.count
+        this.$Spin.hide()
       }).catch(error => {
         console.log(error.message)
+        this.$Spin.hide()
       })
     }
   },
   methods: {
     // 获取相关func
     changePage (curPage) {
+      this.$Spin.show()
       getLost(curPage, 5, 1).then(response => {
         let res = response.data
         this.lostInfo = res.obj
         this.count = res.count
+        this.$Spin.hide()
       })
     },
     // 发布相关func
     formatError (file, fileList) {
-      console.log('文件格式错误')
-      console.log(file)
-      console.log(fileList)
       this.$Message.error('文件格式错误,请检查')
     },
     exceededSize (file, fileList) {
-      console.log('文件过大')
-      console.log(file)
-      console.log(fileList)
       this.$Message.error('文件过大,请检查')
     },
     uploadSuccess (response, file, fileList) {
-      console.log('文件上传成功')
-      console.log(response)
-      console.log(file)
-      console.log(fileList)
       let filename = file.name
       let index1 = filename.lastIndexOf('.')
       var index2 = filename.length
@@ -216,6 +211,7 @@ export default {
       this.$Message.success('上传成功！')
     },
     handleSubmit (name) {
+      this.$Spin.show()
       this.$refs[name].validate((valid) => {
         if (valid) {
           if (this.formValidate.cardPic !== '') {
@@ -237,16 +233,19 @@ export default {
             console.log(upStTel)
             publishLost(upStNum, lostStNum, lostStName, cardPic, foundTime, upStTel, status).then(response => {
               let res = response.data
+              this.$Spin.hide()
               console.log(res)
               this.$Message.success(res.obj)
               this.$refs[name].resetFields()
             }).catch(error => {
+              this.$Spin.hide()
               console.log(error.message)
               this.$Message.error(error.message)
             })
           }
           // this.$Message.success('Success!')
         } else {
+          this.$Spin.hide()
           this.$Message.error('发布失败!')
         }
       })

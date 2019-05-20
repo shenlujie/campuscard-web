@@ -32,8 +32,10 @@ export default {
     }
   },
   mounted () {
+    this.$Spin.show()
     ruleRead().then(response => {
       this.ruleInfo = response.data.obj
+      this.$Spin.hide()
     })
   },
   components: {

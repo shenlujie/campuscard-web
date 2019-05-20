@@ -4,34 +4,42 @@
       <Carousel autoplay>
         <Carousel-item>
           <div class="demo-carousel">
-            <img
-              src="@/assets/images/campus_door.jpg"
-              alt
-            >
+            <a href="http://www.nuc.edu.cn/">
+              <img
+                src="@/assets/images/campus_door.jpg"
+                alt
+              >
+            </a>
           </div>
         </Carousel-item>
         <Carousel-item>
           <div class="demo-carousel">
-            <img
-              src="@/assets/images/campus_it.jpg"
-              alt
-            >
+            <a href="http://www.nuc.edu.cn/info/1013/9407.htm">
+              <img
+                src="@/assets/images/campus_it.jpg"
+                alt
+              >
+            </a>
           </div>
         </Carousel-item>
         <Carousel-item>
           <div class="demo-carousel">
-            <img
-              src="@/assets/images/campus_test.jpg"
-              alt
-            >
+            <a href="http://cst.nuc.edu.cn/info/1038/1635.htm">
+              <img
+                src="@/assets/images/campus_test.jpg"
+                alt
+              >
+            </a>
           </div>
         </Carousel-item>
         <Carousel-item>
           <div class="demo-carousel">
-            <img
-              src="@/assets/images/campus_together.jpg"
-              alt
-            >
+            <a href="http://cst.nuc.edu.cn/">
+              <img
+                src="@/assets/images/campus_together.jpg"
+                alt
+              >
+            </a>
           </div>
         </Carousel-item>
       </Carousel>

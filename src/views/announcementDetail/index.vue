@@ -31,13 +31,16 @@ export default {
 
   },
   mounted () {
+    this.$Spin.show()
     let id = this.$route.params.id
     // console.log(id)
     announcementDetail(id).then(response => {
       let htmlStr = response.data.obj
       this.announcementDetailInfo = htmlStr
+      this.$Spin.hide()
     }).catch(error => {
       this.announcementDetailInfo = '网络错误：' + error
+      this.$Spin.hide()
     })
   },
   components: {

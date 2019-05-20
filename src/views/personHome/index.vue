@@ -123,6 +123,7 @@ export default {
   },
   methods: {
     handleSubmit (name) {
+      this.$Spin.show()
       this.$refs[name].validate((valid) => {
         if (valid) {
           let stNum = this.stNum
@@ -131,6 +132,7 @@ export default {
           let reNewPsw = this.formValidate.reNewPsw
           changePsw(stNum, curPsw, newPsw, reNewPsw).then(response => {
             let res = response.data
+            this.$Spin.hide()
             if (!res.success) {
               this.$Message.error(res.msg)
             } else {
@@ -142,9 +144,11 @@ export default {
               )
             }
           }).catch(error => {
+            this.$Spin.hide()
             console.log(error.message)
           })
         } else {
+          this.$Spin.hide()
           this.$Message.error('格式不正确，提交失败')
         }
       })

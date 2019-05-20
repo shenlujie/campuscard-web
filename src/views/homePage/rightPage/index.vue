@@ -90,29 +90,35 @@ export default {
   computed: {
 
   },
-  created () {
+  mounted () {
+    this.$Spin.show()
     introRead().then(response => {
       this.introList = response.data.obj
     }).catch(error => {
       console.log(error)
+      this.$Spin.hide()
     })
 
     guideRead().then(response => {
       this.guideList = response.data.obj
     }).catch(error => {
       console.log(error)
+      this.$Spin.hide()
     })
 
     announcementRead().then(response => {
       this.announcementList = response.data.obj
     }).catch(error => {
       console.log(error)
+      this.$Spin.hide()
     })
 
     ruleRead().then(response => {
       this.ruleList = response.data.obj
+      this.$Spin.hide()
     }).catch(error => {
       console.log(error)
+      this.$Spin.hide()
     })
   }
 }

@@ -53,6 +53,7 @@ export default {
     operation
   },
   mounted () {
+    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
       this.isLogin = true
@@ -60,6 +61,7 @@ export default {
       getOperation(stId).then(response => {
         let res = response.data
         this.userOperatioinInfo = res.obj
+        this.$Spin.hide()
       })
     }
   }

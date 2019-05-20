@@ -30,8 +30,10 @@ export default {
 
   },
   mounted () {
+    this.$Spin.show()
     introRead().then(response => {
       this.introInfo = response.data.obj
+      this.$Spin.hide()
     })
   },
   watch: {

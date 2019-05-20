@@ -49,12 +49,14 @@ export default {
     }
   },
   mounted () {
+    this.$Spin.show()
     announcementRead(1, 6).then(response => {
       let res = response.data
       this.announcementInfo = res.obj
       this.count = res.count
       // this.page = 1
       this.limit = 6
+      this.$Spin.hide()
     })
   },
   filters: {

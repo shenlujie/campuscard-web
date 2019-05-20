@@ -30,12 +30,15 @@ export default {
 
   },
   mounted () {
+    this.$Spin.show()
     // this.guideInfo = '<p>这样没问题</p>'
     guideRead().then(response => {
       let htmlStr = response.data.obj
       this.guideInfo = htmlStr
+      this.$Spin.hide()
     }).catch(error => {
       this.guideInfo = '网络错误：' + error
+      this.$Spin.hide()
     })
   },
   watch: {

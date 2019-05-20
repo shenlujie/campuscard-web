@@ -93,6 +93,7 @@ export default {
     }
   },
   mounted () {
+    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
       this.isLogin = true
@@ -101,8 +102,10 @@ export default {
         let res = response.data
         this.consumeTermInfo = res.obj
         this.count = res.count
+        this.$Spin.hide()
       }).catch(error => {
         console.log(error.message)
+        this.$Spin.hide()
       })
     }
   }
