@@ -168,9 +168,9 @@ export default {
     notLogin
   },
   mounted () {
-    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
+      this.$Spin.show()
       this.isLogin = true
       // 获取失物招领列表
       getLost(1, 5, 1).then(response => {

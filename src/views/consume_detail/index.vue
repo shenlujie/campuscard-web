@@ -93,9 +93,9 @@ export default {
     }
   },
   mounted () {
-    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
+      this.$Spin.show()
       this.isLogin = true
       let stNum = this.$store.getters.userInfo.stNum
       getConsumeTermDetail(1, 6, stNum).then(response => {

@@ -124,9 +124,9 @@ export default {
     notLogin
   },
   mounted () {
-    this.$Spin.show()
     // console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
+      this.$Spin.show()
       this.isLogin = true
       let id = this.$store.getters.userInfo.id
       getMail(id).then(response => {

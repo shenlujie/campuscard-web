@@ -53,9 +53,9 @@ export default {
     operation
   },
   mounted () {
-    this.$Spin.show()
     console.log(this.$store.getters.token)
     if (this.$store.getters.token) {
+      this.$Spin.show()
       this.isLogin = true
       let stId = this.$store.getters.userInfo.id
       getOperation(stId).then(response => {
