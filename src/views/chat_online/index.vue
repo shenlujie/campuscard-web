@@ -9,7 +9,9 @@
         <Card v-if="!isLogin">
           <notLogin/>
         </Card>
-        <Card v-if="isLogin"></Card>
+        <Card v-if="isLogin">
+          <chat/>
+        </Card>
       </Col>
     </Row>
   </div>
@@ -19,6 +21,7 @@
 import leftPage from '@/components/leftPage/index'
 import breadcrumbview from '@/components/breadcrumb/index'
 import notLogin from '@/components/notLogin/index'
+import chat from '@/components/chat/index'
 export default {
   data () {
     return {
@@ -28,7 +31,8 @@ export default {
   components: {
     leftPage,
     breadcrumbview,
-    notLogin
+    notLogin,
+    chat
   },
   mounted () {
     console.log(this.$store.getters.token)

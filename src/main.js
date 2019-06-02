@@ -9,6 +9,8 @@ import '@/permission'
 import './styles/global/index.css'
 // 导入bootstrap样式
 import './styles/lib/bootstrap/css/bootstrap.min.css'
+// 导入聊天框样式
+import './styles/global/chat.css'
 // 全盘导入iview组件
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
