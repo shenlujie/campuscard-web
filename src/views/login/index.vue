@@ -1,38 +1,40 @@
 <template>
-  <Card class="p-login" dis-hover shadow>
-    <p slot="title">校园一卡通平台</p>
-    <Form
-      class="pb-form"
-      ref="formValidate"
-      :model="cForm.formValidate"
-      :rules="cForm.ruleValidate"
-      :label-width="0"
-      label-position="left"
-    >
-      <Form-item prop="stNum">
-        <Input
-          v-model="cForm.formValidate.stNum"
-          size="large"
-          prefix="md-person"
-          placeholder="请输入账号"
-          @on-enter="handleLogin"
-        />
-      </Form-item>
-      <Form-item prop="stPassword">
-        <Input
-          v-model="cForm.formValidate.stPassword"
-          type="password"
-          size="large"
-          prefix="md-lock"
-          placeholder="请输入密码"
-          @on-enter="handleLogin"
-        />
-      </Form-item>
-      <Form-item>
-        <Button type="primary" size="large" long @click="handleLogin">登录</Button>
-      </Form-item>
-    </Form>
-  </Card>
+  <div class="bg">
+    <Card class="p-login" dis-hover shadow>
+      <p slot="title">校园一卡通平台</p>
+      <Form
+        class="pb-form"
+        ref="formValidate"
+        :model="cForm.formValidate"
+        :rules="cForm.ruleValidate"
+        :label-width="0"
+        label-position="left"
+      >
+        <Form-item prop="stNum">
+          <Input
+            v-model="cForm.formValidate.stNum"
+            size="large"
+            prefix="md-person"
+            placeholder="请输入账号"
+            @on-enter="handleLogin"
+          />
+        </Form-item>
+        <Form-item prop="stPassword">
+          <Input
+            v-model="cForm.formValidate.stPassword"
+            type="password"
+            size="large"
+            prefix="md-lock"
+            placeholder="请输入密码"
+            @on-enter="handleLogin"
+          />
+        </Form-item>
+        <Form-item>
+          <Button type="primary" size="large" long @click="handleLogin">登录</Button>
+        </Form-item>
+      </Form>
+    </Card>
+  </div>
 </template>
 
 <script>
@@ -93,8 +95,14 @@ export default {
 </script>
 
 <style scoped>
+.bg {
+  margin-top: 100px;
+  padding: 120px;
+  height: 500px;
+  background-image: url('../../assets/images/login_bg.jpg');
+}
 .p-login {
-  margin: 200px auto;
-  width: 25%;
+  margin: 0px 850px;
+  width: 400px;
 }
 </style>
